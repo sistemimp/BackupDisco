@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'"
+    />
+    <title>Backup Disco</title>
+    <link rel="icon" type="image/x-icon" href="./img/icona.ico" />
+    <link rel="stylesheet" href="./renderer.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <h1>Backup Disco</h1>
+        <button id="themeToggle" class="ghost">Dark mode</button>
+      </header>
+
+      <div class="layout">
+        <div class="main-col">
+          <section class="panel">
+            <h2>Configurazioni</h2>
+            <div class="row split">
+              <select id="configSelect"></select>
+              <button id="newConfig">Nuova</button>
+              <button id="deleteConfig" class="danger">Elimina</button>
+            </div>
+
+            <label>Nome configurazione</label>
+            <div class="row">
+              <input id="configName" type="text" placeholder="Es. Backup ufficio" />
+            </div>
+          </section>
+
+          <section class="panel">
+            <label>Cartelle sorgente</label>
+            <div class="row">
+              <button id="addSource">Aggiungi cartella</button>
+            </div>
+            <ul id="sourceList" class="source-list"></ul>
+
+            <label>Cartella destinazione</label>
+            <div class="row split">
+              <input id="targetDir" type="text" readonly />
+              <button id="pickTarget">Seleziona</button>
+            </div>
+          </section>
+
+          <section class="panel">
+            <label>Schedulazione</label>
+            <div class="row">
+              <select id="scheduleType">
+                <option value="interval">Ogni N minuti</option>
+                <option value="daily">Ogni giorno a un orario</option>
+              </select>
+            </div>
+
+            <div class="row" id="intervalRow">
+              <input id="intervalMinutes" type="number" min="1" value="60" />
+              <span>min</span>
+            </div>
+
+            <div class="row hidden" id="dailyRow">
+              <input id="dailyTime" type="time" value="22:00" />
+            </div>
+
+            <div class="row actions">
+              <button id="saveConfig">Salva</button>
+              <button id="runNow">Esegui ora</button>
+              <button id="startSchedule">Avvia</button>
+              <button id="checkUpdates" class="ghost">Controlla update</button>
+              <button id="installUpdateNow" class="ghost">Installa update</button>
+              <button id="stopBackup" class="danger">Stop backup</button>
+              <button id="stopSchedule" class="danger">Stop sched.</button>
+              <button id="stopAll" class="danger">Stop tutto</button>
+            </div>
+          </section>
+
+          <section class="panel">
+            <h2>Log</h2>
+            <pre id="log"></pre>
+          </section>
+        </div>
+
+        <aside class="side-col">
+          <section class="panel side-panel">
+            <h2>Riepilogo Configurazioni</h2>
+            <div class="row">
+              <button id="runAllConfigs">Esegui tutte</button>
+            </div>
+            <ul id="configSummaryList" class="config-summary-list"></ul>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>
